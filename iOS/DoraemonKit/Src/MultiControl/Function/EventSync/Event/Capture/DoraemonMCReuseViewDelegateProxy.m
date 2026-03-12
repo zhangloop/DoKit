@@ -83,13 +83,13 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([DoraemonMCServer isOpen]) {
+//    if ([DoraemonMCServer isOpen]) {
         [DoraemonMCCommandGenerator sendMessageWithView:collectionView
                                                 gusture:nil
                                                  action:nil
                                               indexPath:indexPath
                                             messageType:DoraemonMCMessageTypeDidSelectCell];
-    }
+//    }
     if ([self.target respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
         [self.target collectionView:collectionView didSelectItemAtIndexPath:indexPath];
     }
@@ -97,20 +97,20 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([DoraemonMCServer isOpen]) {
+//    if ([DoraemonMCServer isOpen]) {
         [DoraemonMCCommandGenerator sendMessageWithView:tableView
                                                 gusture:nil
                                                  action:nil
                                               indexPath:indexPath
                                             messageType:DoraemonMCMessageTypeDidSelectCell];
-    }
+//    }
     if ([self.target respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
         [self.target tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if ([DoraemonMCServer isOpen]) {
+//    if ([DoraemonMCServer isOpen]) {
         NSIndexPath *lastIndexPath = nil;
         if ([scrollView isKindOfClass:[UITableView class]]) {
             UITableView *tableView = (UITableView *)scrollView;
@@ -126,7 +126,7 @@
                                                   indexPath:lastIndexPath
                                                 messageType:DoraemonMCMessageTypeDidScrollToCell];
         }
-    }
+//    }
     if ([self.target respondsToSelector:_cmd]) {
         [self.target scrollViewDidEndDecelerating:scrollView];
     }
