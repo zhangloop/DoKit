@@ -333,7 +333,7 @@
     "该功能需要重启App才能生效"        =   "Reboot to work";
     "请输入您要搜索的关键字"           =   "Please enter search keywords";
     "删除失败"                                     = "Delete fail";
-    "Doraemon关闭之后需要重启App才能重新打开"   =   "Reboot to open Doraemon";
+    "DebugTool关闭之后需要重启App才能重新打开"   =   "Reboot to open DebugTool";
     "复制"                                           = "Copy";
     "删除"                                           = "Delete";
 
