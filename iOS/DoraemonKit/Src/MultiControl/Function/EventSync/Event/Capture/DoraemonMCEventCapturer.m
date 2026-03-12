@@ -25,8 +25,8 @@
 
 - (BOOL)do_mc_sendAction:(SEL)action to:(id)target from:(id)sender forEvent:(UIEvent *)event {
     
-    if ([DoraemonMCServer isOpen]) {
-        
+//    if ([DoraemonMCServer isOpen]) {
+//        
         UIView *senderV = sender;
         if ([sender isKindOfClass:[UIGestureRecognizer class]]) {
             UIGestureRecognizer *ges = sender;
@@ -39,7 +39,7 @@
                                                   indexPath:nil
                                                 messageType:DoraemonMCMessageTypeControl];
         }
-    }
+//    }
     
     return [self do_mc_sendAction:action to:target from:sender forEvent:event];
 }
@@ -71,9 +71,9 @@
 }
 
 - (void)do_mc_action:(id)sender {
-    if ([DoraemonMCServer isOpen]) {
+//    if ([DoraemonMCServer isOpen]) {
         [self do_mc_handleGestureSend:sender];
-    }
+//    }
 }
 
 @end
@@ -107,9 +107,9 @@
 }
 
 - (void)do_mc_sendPayload:(NSDictionary*(^)(NSDictionary*))payload {
-    if (![DoraemonMCServer isOpen]) {
-        return;
-    }
+//    if (![DoraemonMCServer isOpen]) {
+//        return;
+//    }
     if (![self isKindOfClass:[UITextField class]]) {
         return;
         
@@ -144,9 +144,9 @@
 }
 
 - (void)do_mc_sendTextViewPayload:(NSDictionary*(^)(NSDictionary*))payload {
-    if (![DoraemonMCServer isOpen]) {
-        return;
-    }
+//    if (![DoraemonMCServer isOpen]) {
+//        return;
+//    }
     if (![self isKindOfClass:[UITextView class]]) {
         return;
         
@@ -221,9 +221,9 @@
 
 - (void)do_mc_setSelectedViewController:(__kindof UIViewController *)selectedViewController {
     [self do_mc_setSelectedViewController:selectedViewController];
-    if (![DoraemonMCServer isOpen]) {
-        return;
-    }
+//    if (![DoraemonMCServer isOpen]) {
+//        return;
+//    }
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.viewControllers indexOfObject:selectedViewController] inSection:0];
     [DoraemonMCCommandGenerator sendMessageWithView:self.view

@@ -1,4 +1,8 @@
-platform :ios, '9.0'
+
+platform:ios,’12.0’
+#use_frameworks!
+#inhibit_all_warnings! #消除第三方仓库的警告
+source 'git@github.com:CocoaPods/Specs.git'
 
 # use_frameworks!
 # install! 'cocoapods', generate_multiple_pod_projects: true
@@ -7,16 +11,19 @@ target 'DoraemonKitDemo' do
   #pod 'WeexSDK', :git => 'git@github.com:apache/incubator-weex.git', :tag => '0.26.0'
   #pod 'DoraemonKit', :subspecs => ['Core','WithLogger','WithGPS','WithLoad','WithWeex', 'WithDatabase', 'WithMLeaksFinder'],  :path => '../../'
   #pod 'DoraemonKit', :subspecs => ['Core'],  :path => '../../'
-  pod 'DoraemonKit', :subspecs => ['Core', 'WithLogger', 'WithGPS', 'WithLoad', 'WithDatabase', 'WithMLeaksFinder', 'WithWeex' , 'WithMultiControl'], :path => '../../'
+  # 只使用不依赖 GCDWebServer/SocketRocket/Mantle 的 subspec
+  # 移除 WithWeex (依赖 WXDevtool -> SocketRocket)
+  # 移除 WithDatabase (依赖 YYDebugDatabase -> GCDWebServer/FMDB)
+  pod 'DoraemonKit', :subspecs => ['Core', 'WithLogger', 'WithGPS', 'WithLoad', 'WithMLeaksFinder', 'WithMultiControl'], :path => '../../'
   pod 'AFNetworking', '~> 4.0'
   pod 'SDWebImage', '~> 5.11'
-  pod 'SocketRocket', '~> 0.5'
+  # pod 'SocketRocket', '~> 0.5'  # 移除 SocketRocket 依赖
   pod 'SDWebImageWebPCoder', '~> 0.8'
   # pod 'FBRetainCycleDetector', '~> 0.1'
   # FBRetainCycleDetector ~> 0.2 版本无法在 Xcode 12 编译通过
-  pod 'FBRetainCycleDetector', :git => 'git@github.com:facebook/FBRetainCycleDetector.git', :branch => 'master'
+  # pod 'FBRetainCycleDetector', :git => 'git@github.com:facebook/FBRetainCycleDetector.git', :branch => 'master'
   # pod 'fishhook', '~> 0.2'
-  pod 'YYDebugDatabase', '~> 2.1'
+  # pod 'YYDebugDatabase', '~> 2.1'  # 移除，因为它依赖 GCDWebServer
   pod 'Masonry', '0.6.3'
   pod 'JSONModel','~>1.4'
 end

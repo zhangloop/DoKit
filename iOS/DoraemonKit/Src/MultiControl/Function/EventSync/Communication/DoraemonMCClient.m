@@ -6,7 +6,7 @@
 //
 
 #import "DoraemonMCClient.h"
-#import <SocketRocket/SocketRocket.h>
+//#import <SocketRocket/SocketRocket.h>
 #import "DoraemonToastUtil.h"
 #import "DoraemonMCCommandExcutor.h"
 #import "DoraemonHomeWindow.h"

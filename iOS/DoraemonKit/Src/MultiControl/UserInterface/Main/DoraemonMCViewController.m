@@ -13,10 +13,11 @@
 #import "DoraemonAppInfoUtil.h"
 #import "DoraemonManager.h"
 #import "UIColor+Doraemon.h"
-#import <DoraemonKit/DKQRCodeScanViewController.h>
-#import <DoraemonKit/DKMultiControlStreamManager.h>
+//#import <DoraemonKit/DKQRCodeScanViewController.h>
+//#import <DoraemonKit/DKMultiControlStreamManager.h>
 
-@interface DoraemonMCViewController () <DKMultiControlStreamManagerStateListener>
+@interface DoraemonMCViewController ()
+//<DKMultiControlStreamManagerStateListener>
 
 @property(nonatomic, nullable, weak) UIButton *webSocketButton;
 
@@ -71,19 +72,19 @@
     [self.view addSubview:masterSwitch];
     self.masterSwitch = masterSwitch;
     [masterSwitch addTarget:self action:@selector(masterSwitchHandler:) forControlEvents:UIControlEventValueChanged];
-    [DKMultiControlStreamManager.sharedInstance registerMultiControlStreamManagerStateListener:self];
+//    [DKMultiControlStreamManager.sharedInstance registerMultiControlStreamManagerStateListener:self];
 }
 
 - (void)masterSwitchHandler:(id)sender {
     if (((UISwitch *) sender).isOn) {
-        [DKMultiControlStreamManager.sharedInstance changeToMaster];
+//        [DKMultiControlStreamManager.sharedInstance changeToMaster];
     } else {
-        [DKMultiControlStreamManager.sharedInstance changeToSlave];
+//        [DKMultiControlStreamManager.sharedInstance changeToSlave];
     }
 }
 
 - (void)webSocketButtonHandler:(id)sender {
-    if (DKMultiControlStreamManager.sharedInstance.state == DKMultiControlStreamManagerStateClosed) {
+//    if (DKMultiControlStreamManager.sharedInstance.state == DKMultiControlStreamManagerStateClosed) {
 #if TARGET_OS_SIMULATOR
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"连接 DoKit Studio" message:@"请输入 ip 地址点击确定连接" preferredStyle:UIAlertControllerStyleAlert];
         __weak typeof(alertController) weakAlertController = alertController;
@@ -105,46 +106,46 @@
         }];
         [self presentViewController:alertController animated:YES completion:nil];
 #else
-        DKQRCodeScanViewController *qrCodeScanViewController = [[DKQRCodeScanViewController alloc] init];
-        qrCodeScanViewController.completionBlock = ^(NSString *decodedString) {
-            if (!decodedString) {
-                return;
-            }
-            NSURL *url = [NSURL URLWithString:decodedString];
-            if (!url) {
-                return;
-            }
-            [DKMultiControlStreamManager.sharedInstance enableMultiControlWithUrl:url];
-        };
-        [self showViewController:qrCodeScanViewController sender:sender];
+//        DKQRCodeScanViewController *qrCodeScanViewController = [[DKQRCodeScanViewController alloc] init];
+//        qrCodeScanViewController.completionBlock = ^(NSString *decodedString) {
+//            if (!decodedString) {
+//                return;
+//            }
+//            NSURL *url = [NSURL URLWithString:decodedString];
+//            if (!url) {
+//                return;
+//            }
+//            [DKMultiControlStreamManager.sharedInstance enableMultiControlWithUrl:url];
+//        };
+//        [self showViewController:qrCodeScanViewController sender:sender];
 #endif
-    } else {
-        [DKMultiControlStreamManager.sharedInstance disableMultiControl];
-    }
+//    } else {
+////        [DKMultiControlStreamManager.sharedInstance disableMultiControl];
+//    }
+//}
+
+//- (void)changeToState:(DKMultiControlStreamManagerState)state {
+//    switch (state) {
+//        case DKMultiControlStreamManagerStateClosed:
+//            [self.masterSwitch setOn:NO animated:YES];
+//            [self.webSocketButton setTitle:@"流式传输" forState:UIControlStateNormal];
+//            break;
+//        case DKMultiControlStreamManagerStateSlave:
+//            [self.masterSwitch setOn:NO animated:YES];
+//            [self.webSocketButton setTitle:@"断开连接" forState:UIControlStateNormal];
+//            break;
+//        case DKMultiControlStreamManagerStateMaster:
+//            [self.masterSwitch setOn:YES animated:YES];
+//            [self.webSocketButton setTitle:@"断开连接" forState:UIControlStateNormal];
+//            break;
+//            
+//        default:
+//            break;
+//    }
 }
 
-- (void)changeToState:(DKMultiControlStreamManagerState)state {
-    switch (state) {
-        case DKMultiControlStreamManagerStateClosed:
-            [self.masterSwitch setOn:NO animated:YES];
-            [self.webSocketButton setTitle:@"流式传输" forState:UIControlStateNormal];
-            break;
-        case DKMultiControlStreamManagerStateSlave:
-            [self.masterSwitch setOn:NO animated:YES];
-            [self.webSocketButton setTitle:@"断开连接" forState:UIControlStateNormal];
-            break;
-        case DKMultiControlStreamManagerStateMaster:
-            [self.masterSwitch setOn:YES animated:YES];
-            [self.webSocketButton setTitle:@"断开连接" forState:UIControlStateNormal];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (BOOL)needBigTitleView{
-    return YES;
-}
+//- (BOOL)needBigTitleView{
+//    return YES;
+//}
 
 @end

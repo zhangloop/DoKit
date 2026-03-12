@@ -77,10 +77,11 @@ iOS各式各样的工具集合
     ss.resource_bundle = {
       'DoraemonKit' => 'iOS/DoraemonKit/Resource/**/*'
     }
-    ss.dependency 'GCDWebServer'
-    ss.dependency 'GCDWebServer/WebUploader'
-    ss.dependency 'GCDWebServer/WebDAV'
-    ss.dependency 'FMDB'
+    # 移除 GCDWebServer 和 FMDB 依赖
+    # ss.dependency 'GCDWebServer'
+    # ss.dependency 'GCDWebServer/WebUploader'
+    # ss.dependency 'GCDWebServer/WebDAV'
+     ss.dependency 'FMDB'
   end
 
   s.subspec 'WithLogger' do |ss| 
@@ -127,7 +128,8 @@ iOS各式各样的工具集合
         'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) DoraemonWithDatabase'
     }
     ss.dependency 'DoraemonKit/Core'
-    ss.dependency 'YYDebugDatabase'
+    # 移除 YYDebugDatabase 依赖（它会引入 GCDWebServer 和 FMDB）
+    # ss.dependency 'YYDebugDatabase'
   end
 
   s.subspec 'WithMLeaksFinder' do |ss|
@@ -146,6 +148,7 @@ iOS各式各样的工具集合
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) DoraemonWithMultiControl'
     }
     ss.dependency 'DoraemonKit/Core'
-    ss.dependency 'DoraemonKit/Foundation'
+    # 移除 Foundation 依赖（包含 SocketRocket 和 Mantle）
+    # ss.dependency 'DoraemonKit/Foundation'
   end
 end
