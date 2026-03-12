@@ -37,9 +37,9 @@ static NSString *DoraemonHomeCloseCellID = @"DoraemonHomeCloseCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"DoKit";
-    [self setLeftNavBarItems:nil];
-    [self setRightNavTitle:DoraemonLocalizedString(@"设置")];
+//    self.title = @"DoKit";
+//    [self setLeftNavBarItems:nil];
+//    [self setRightNavTitle:DoraemonLocalizedString(@"设置")];
     
     
 #if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
@@ -65,8 +65,8 @@ static NSString *DoraemonHomeCloseCellID = @"DoraemonHomeCloseCellID";
 }
 
 - (void)rightNavTitleClick:(id)clickView{
-    DoraemonSettingViewController *vc = [[DoraemonSettingViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    DoraemonSettingViewController *vc = [[DoraemonSettingViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)kitManagerUpdate:(NSNotification *)aNotification {
